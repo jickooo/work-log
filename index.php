@@ -13,7 +13,7 @@ session_start();
 // LOGIKA ZA ODJAVU
 if (isset($_GET['akcija']) && $_GET['akcija'] == 'odjava') {
     session_destroy();
-    header("Location: evidencija.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -21,7 +21,7 @@ if (isset($_GET['akcija']) && $_GET['akcija'] == 'odjava') {
 if (isset($_POST['prijava'])) {
     if ($_POST['sifra'] === $sifra_za_pristup) {
         $_SESSION['prijavljen'] = true;
-        header("Location: evidencija.php");
+        header("Location: index.php");
         exit;
     } else {
         $greska_prijava = "Pogrešna šifra!";
@@ -80,7 +80,7 @@ if ($prijavljen) {
     // Ako je nešto promenjeno, sačuvaj u fajl i osveži
     if ($sacuvaj_potrebno) {
         file_put_contents($fajl_baza, json_encode($podaci, JSON_PRETTY_PRINT));
-        header("Location: evidencija.php");
+        header("Location: index.php");
         exit;
     }
 
